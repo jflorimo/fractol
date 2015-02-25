@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/25 14:53:05 by jflorimo          #+#    #+#             */
-/*   Updated: 2015/02/25 14:53:06 by jflorimo         ###   ########.fr       */
+/*   Created: 2015/02/25 15:11:07 by jflorimo          #+#    #+#             */
+/*   Updated: 2015/02/25 15:11:07 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
+#include <stdio.h>
 
-void drawfractol(t_env *e)
+int mouse_hook(int button, int x, int y, t_env *e)
 {
-	int x;
-	int y;
-
-	x = 0;
-	while (x < WIN_WIDTH)
+	if(e)
 	{
-		y = 0;
-		while (y < WIN_HEIGHT)
-		{
-			drawmandelbrot(e, x, y);
-			y++;
-		}
-		x++;
+		printf("x:%d, y:%d, button:%d\n",x, y, button);
 	}
+	return (0);
 }

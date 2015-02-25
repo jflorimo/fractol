@@ -13,8 +13,22 @@
 #include "fractol.h"
 #include "libft.h"
 
-int		main(void)
+void	choice_message(void)
 {
-	draw();
+	ft_putstr("you can choose between:\n");
+	ft_putstr("1. mandelbrot\n");
+}
+
+int		main(int ac, char **av)
+{
+	if (ac > 1)
+	{
+		if (!ft_strcmp(av[1], "mandelbrot"))
+			draw();
+		else
+			choice_message();
+	}
+	else
+		choice_message();
 	return (0);
 }
