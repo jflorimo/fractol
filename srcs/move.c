@@ -16,24 +16,24 @@
 
 void move_up(t_env *e)
 {
-	e->mb.maxY += MOVE_STEP;
-	e->mb.minY += MOVE_STEP;
+	e->mb.maxY += MOVE_STEP/2;
+	e->mb.minY += MOVE_STEP/2;
 }
 
 void move_down(t_env *e)
 {
-	e->mb.maxY -= MOVE_STEP;
-	e->mb.minY -= MOVE_STEP;
+	e->mb.maxY -= MOVE_STEP/2;
+	e->mb.minY -= MOVE_STEP/2;
 }
 
 void move_left(t_env *e)
 {
-	e->mb.maxX += MOVE_STEP;
-	e->mb.minX += MOVE_STEP;
+	e->mb.maxX += MOVE_STEP/2;
+	e->mb.minX += MOVE_STEP/2;
 }
 
 void move_right(t_env *e)
 {
-	e->mb.maxX -= MOVE_STEP;
-	e->mb.minX -= MOVE_STEP;
+	e->mb.maxX -= MOVE_STEP/2;
+	e->mb.minX -= MOVE_STEP/2;
 }

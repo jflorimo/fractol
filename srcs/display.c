@@ -41,9 +41,9 @@ int			key_hook(int keycode, t_env *e)
 		if (keycode == 65363)
 			move_left(e);
 		if (keycode == 65451)
-			zoom_out(e);
-		if (keycode == 65453)
 			zoom_in(e);
+		if (keycode == 65453)
+			zoom_out(e);			
 		printf("key: %d\n", keycode);
 		display(e);
 	}
@@ -66,6 +66,8 @@ void		draw(void)
 {
 	t_env	e;
 
+	e.mousex = 0;
+	e.mousey = 0;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	e.mb = initmandelbrot();

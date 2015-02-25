@@ -18,7 +18,12 @@ int mouse_hook(int button, int x, int y, t_env *e)
 {
 	if(e)
 	{
-		printf("x:%d, y:%d, button:%d\n",x, y, button);
+		e->mousex = x - (WIN_WIDTH / 2);
+		e->mousey = y - (WIN_HEIGHT / 2);
+		printf("x:%d, y:%d, button:%d\n",e->mousex , e->mousey, button);
+		if(button == 5)
+			zoom_in(e);
+		display(e);
 	}
 	return (0);
 }
