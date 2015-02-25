@@ -40,10 +40,21 @@ int		key_hook(int keycode, t_env *e)
 		//DOWN 65458
 		//LEFT 65460
 		//RIGHT 65462
-		printf("key pressed %d\n", keycode);
+		printf("#######\nmaxX: %f, minX: %f\nmaxY: %f, minY: %f\n", 
+			e->mb.maxX, e->mb.minX, e->mb.maxY, e->mb.minY);
 		display(e);
 	}
 	return (0);
+}
+
+void put_pixel_to_image(t_env *e, int x, int y, int color)
+{
+	char	*pixel;
+	int 	index;
+
+	index = x*(e-)
+
+	e.image.data
 }
 
 void	draw(void)
@@ -54,6 +65,12 @@ void	draw(void)
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 800, 600, "mandelbrot");
 	e.mb = initMandelbrot();
+
+	e.image.image = mlx_new_image(e.mlx, 800, 600);
+	e.image.data = mlx_get_data_addr(e.image.image, &(e.image.bpp), 
+		&(e.image.size_line), &(e.image.endian));
+
+
 	mlx_key_hook(e.win, key_hook, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_loop(e.mlx);

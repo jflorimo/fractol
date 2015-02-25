@@ -24,11 +24,26 @@ typedef	struct		s_mandelbrot
 	float maxY;
 }					t_mandelbrot;
 
+typedef struct		s_image
+{
+	void			*image;
+	char			*data;
+
+	int				size_line;
+	int 			endian;
+	int				bpp;
+
+	int				sizeX;
+	int				sizeY;
+
+}					t_image;
+
 typedef	struct		s_env
 {
 	void			*mlx;
 	void			*win;
 	t_mandelbrot	mb;
+	t_image			image;
 
 }					t_env;
 
