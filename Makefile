@@ -14,13 +14,13 @@ NAME =	fractol
 
 SRCDIR = srcs/
 
-CFILES =	main.c display.c mandelbrot.c\
+CFILES =	main.c display.c mandelbrot.c move.c zoom.c fractol.c\
 
 MLX = -L/usr/X11/lib -lmlx -lXext -lX11
 
 SRC = $(addprefix $(SRCDIR), $(CFILES))
 
-GCC = gcc 
+GCC = gcc -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 

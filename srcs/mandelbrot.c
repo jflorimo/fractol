@@ -1,23 +1,20 @@
 #include "fractol.h"
 #include "libft.h"
 
-t_mandelbrot initMandelbrot( void )
+t_mandelbrot initMandelbrot(void)
 {
 	t_mandelbrot mandelbrot;
 
 	mandelbrot.minX = -2.0;
 	mandelbrot.maxX = 2.0;
-
 	mandelbrot.minY = -1.1;
 	mandelbrot.maxY = 1.1;
-
 	return mandelbrot;
 }
 
-void drawMaldelbrot(t_env *e)
+
+void drawMandelbrot(t_env *e, int x, int y)
 {
-	int x = 0;
-	int y = 0;
 	int a = 0;
 	float rc;
 	float ic;
@@ -27,38 +24,28 @@ void drawMaldelbrot(t_env *e)
 	float i;
 	t_color color;
 	
-	while (x < 800)
+	rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * x;
+	ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * y;
+
+	rz = 0;
+	iz = 0;
+
+	a = 0;
+	while (a < MANDELBROT_ITERATION)
 	{
-		y = 0;
-		while (y < 600)
-		{
-			rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / 800 * x;
-			ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / 600 * y;
+		r = rz;
 
-			rz = 0;
-			iz = 0;
+		i = iz;
 
-			a = 0;
-			while (a < 15)
-			{
-				r = rz;
+		rz = r*r - i*i + rc;
+		iz = 2 * r*i + ic;
 
-				i = iz;
-
-				rz = r*r - i*i + rc;
-				iz = 2 * r*i + ic;
-
-				if ((rz*rz + iz*iz) >= 4)
-					break;
-				a++;
-			}
-			color.r = (255*a)/15;
-			color.g = (255*a)/15;
-			color.b = 255;
-			put_pixel_to_image(e, x, y, color);
-
-			y++;
-		}
-		x++;
+		if ((rz*rz + iz*iz) >= 4)
+			break;
+		a++;
 	}
+	color.r = (255*a)/ MANDELBROT_ITERATION;
+	color.g = 0;
+	color.b = 255;
+	put_pixel_to_image(e, x, y, color);	
 }
