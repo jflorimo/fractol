@@ -47,6 +47,13 @@ typedef	struct		s_env
 
 }					t_env;
 
+typedef struct		s_color
+{
+	char			r;
+	char			g;
+	char			b;			
+}					t_color;
+
 /***********************
 	Display Functions
 ************************/

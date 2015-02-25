@@ -5,6 +5,7 @@
 void	display(t_env *e)
 {
 	drawMaldelbrot(e);
+	mlx_put_image_to_window(e->mlx, e->win, e->image.image, 0, 0);
 }
 
 int		expose_hook(t_env *e)
@@ -47,14 +48,17 @@ int		key_hook(int keycode, t_env *e)
 	return (0);
 }
 
-void put_pixel_to_image(t_env *e, int x, int y, int color)
+void put_pixel_to_image(t_env *e, int x, int y, t_color color)
 {
 	char	*pixel;
 	int 	index;
+	// y * largeur + x  *bbp (bpp est en byte et je le converti en octet)
+	index = y*(e->image.size_line) + (x * (e->image.bpp/8));
 
-	index = x*(e-)
-
-	e.image.data
+	pixel = &(e->image.data[index]);
+	pixel[0] = color.b ;// b
+	pixel[1] = color.g;//g
+	pixel[2] = color.r;//r
 }
 
 void	draw(void)

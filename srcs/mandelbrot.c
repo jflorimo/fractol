@@ -25,6 +25,7 @@ void drawMaldelbrot(t_env *e)
 	float iz;
 	float r;
 	float i;
+	t_color color;
 	
 	while (x < 800)
 	{
@@ -51,7 +52,10 @@ void drawMaldelbrot(t_env *e)
 					break;
 				a++;
 			}
-			mlx_pixel_put(e->mlx, e->win, x, y, (255*a)/15);
+			color.r = (255*a)/15;
+			color.g = (255*a)/15;
+			color.b = 255;
+			put_pixel_to_image(e, x, y, color);
 
 			y++;
 		}
