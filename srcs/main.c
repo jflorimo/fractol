@@ -19,16 +19,17 @@ void	choice_message(void)
 	ft_putstr("1. mandelbrot\n");
 }
 
-int		main(int ac, char **av)
+int		main()//int ac, char **av)
 {
-	if (ac > 1)
-	{
-		if (!ft_strcmp(av[1], "mandelbrot"))
-			draw();
-		else
-			choice_message();
-	}
-	else
-		choice_message();
+	draw();
+	// if (ac > 1)
+	// {
+	// 	if (!ft_strcmp(av[1], "mandelbrot"))
+	// 		draw();
+	// 	else
+	// 		choice_message();
+	// }
+	// else
+	// 	choice_message();
 	return (0);
 }

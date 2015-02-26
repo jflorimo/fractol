@@ -17,10 +17,10 @@ t_mandelbrot		initmandelbrot(void)
 {
 	t_mandelbrot	mandelbrot;
 
-	mandelbrot.minX = -2.4;
-	mandelbrot.maxX = 2.4;
-	mandelbrot.minY = -1.5;
-	mandelbrot.maxY = 1.5;
+	mandelbrot.minX = -MANDELBROT_X;
+	mandelbrot.maxX = MANDELBROT_X;
+	mandelbrot.minY = -MANDELBROT_Y;
+	mandelbrot.maxY = MANDELBROT_Y;
 	return (mandelbrot);
 }
 
@@ -29,8 +29,8 @@ void				drawmandelbrot(t_env *e, int x, int y)
 	int				a;
 	t_color			color;
 
-	e->mb.rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * x;
-	e->mb.ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * y;
+	e->mb.rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * (x/e->zoom);
+	e->mb.ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * (y/e->zoom);
 	e->mb.rz = 0;
 	e->mb.iz = 0;
 	a = 0;
@@ -44,11 +44,17 @@ void				drawmandelbrot(t_env *e, int x, int y)
 			break ;
 		a++;
 	}
-	color.r = (255 * a) / MANDELBROT_ITERATION;
-	if( a%2 )
+	if (a >= MANDELBROT_ITERATION)
+	{
+		color.r = 0;
 		color.g = 0;
+		color.b = 0;		
+	}
 	else
-		color.g = 255;
-	color.b = 255;
+	{
+		color.r = (255 * a) / MANDELBROT_ITERATION;
+		color.g = 0;
+		color.b = 0;		
+	}
 	put_pixel_to_image(e, x, y, color);
 }

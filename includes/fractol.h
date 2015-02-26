@@ -14,10 +14,14 @@
 # define FRACTOL_H
 
 #define SECOND 1000000.0
-#define MOVE_STEP 1.01
+#define MOVE_STEP 1.005
+
+#define MANDELBROT_X 2.4
+#define MANDELBROT_Y 1.5
 #define MANDELBROT_ITERATION 35
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 800
+
+#define WIN_WIDTH 800.0
+#define WIN_HEIGHT 800.0
 #include <stdlib.h>
 #include <mlx.h>
 
@@ -55,10 +59,12 @@ typedef	struct		s_env
 	void			*win;
 	t_image			image;
 	t_mandelbrot	mb;
-	int				mousex;
-	int				mousey;
+	float			mousex;
+	float			mousey;
 	double			start_frame;
 	double			end_frame;
+	int				state;
+	float			zoom;
 }					t_env;
 
 typedef struct		s_color
@@ -86,7 +92,8 @@ t_mandelbrot initmandelbrot( void );
 void drawmandelbrot(t_env *, int x, int y);
 
 /* Move **/
-int mouse_hook(int button, int x, int y, t_env *e);
+int mouse_hook_position(int x, int y, t_env *e);
+int mouse_hook_button(int button, int x, int y, t_env *e);
 void move_up(t_env *e);
 void move_down(t_env *e);
 void move_left(t_env *e);

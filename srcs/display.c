@@ -47,8 +47,8 @@ int			key_hook(int keycode, t_env *e)
 			zoom_in(e);
 		if (keycode == 65453)
 			zoom_out(e);			
-		printf("key: %d\n", keycode);
-
+		// printf("key: %d\n", keycode);
+		e->state = 1;
 	}
 	return (0);
 }
@@ -76,13 +76,18 @@ static double	get_time(void)
 int main_loop(t_env *e)
 {
 	e->start_frame = get_time();
-
-	// display(e);
-
+	if(e->state)
+	{
+		display(e);
+		e->state = 0;
+	}	
 	e->end_frame = get_time();
+
 	double diff = e->end_frame - e->start_frame;
-	printf("tadam");
-	usleep(SECOND/60);
+
+	usleep((SECOND/30.0) - (diff));
+
+	// printf("tadam %lf\n", 1.0/(get_time() - e->start_frame));
 	return (0);
 }
 
@@ -92,6 +97,7 @@ void		draw(void)
 
 	e.mousex = 0;
 	e.mousey = 0;
+	e.zoom = 1;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	mlx_do_key_autorepeaton(e.mlx);
@@ -100,9 +106,9 @@ void		draw(void)
 	e.image.data = mlx_get_data_addr(e.image.image, &(e.image.bpp),
 		&(e.image.size_line), &(e.image.endian));
 	mlx_hook(e.win, KeyPress, KeyPressMask, &key_hook, &e);
-	// mlx_hook(e.win, MotionNotify, PointerMotionMask, &mouse_hook, &e);
-	// mlx_key_hook(e.win, key_hook, &e);
-	mlx_mouse_hook(e.win, mouse_hook, &e);
+	mlx_hook(e.win, MotionNotify, PointerMotionMask, &mouse_hook_position, &e);
+	mlx_hook(e.win, ButtonPress, ButtonPressMask, &mouse_hook_button, &e);
+	// mlx_mouse_hook(e.win, mouse_hook, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
 
 	mlx_loop_hook( e.mlx, &main_loop, &e);
