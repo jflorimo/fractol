@@ -13,6 +13,9 @@
 #include "fractol.h"
 #include "libft.h"
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/time.h>
+#include </usr/X11/include/X11/X.h>
 
 void		display(t_env *e)
 {
@@ -45,7 +48,7 @@ int			key_hook(int keycode, t_env *e)
 		if (keycode == 65453)
 			zoom_out(e);			
 		printf("key: %d\n", keycode);
-		display(e);
+
 	}
 	return (0);
 }
@@ -62,6 +65,27 @@ void		put_pixel_to_image(t_env *e, int x, int y, t_color color)
 	pixel[2] = color.r;
 }
 
+static double	get_time(void)
+{
+	struct timeval		tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec + (double)tv.tv_usec / SECOND);
+}
+
+int main_loop(t_env *e)
+{
+	e->start_frame = get_time();
+
+	// display(e);
+
+	e->end_frame = get_time();
+	double diff = e->end_frame - e->start_frame;
+	printf("tadam");
+	usleep(SECOND/60);
+	return (0);
+}
+
 void		draw(void)
 {
 	t_env	e;
@@ -70,12 +94,47 @@ void		draw(void)
 	e.mousey = 0;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
+	mlx_do_key_autorepeaton(e.mlx);
 	e.mb = initmandelbrot();
 	e.image.image = mlx_new_image(e.mlx, WIN_WIDTH, WIN_HEIGHT);
 	e.image.data = mlx_get_data_addr(e.image.image, &(e.image.bpp),
 		&(e.image.size_line), &(e.image.endian));
-	mlx_key_hook(e.win, key_hook, &e);
+	mlx_hook(e.win, KeyPress, KeyPressMask, &key_hook, &e);
+	// mlx_hook(e.win, MotionNotify, PointerMotionMask, &mouse_hook, &e);
+	// mlx_key_hook(e.win, key_hook, &e);
 	mlx_mouse_hook(e.win, mouse_hook, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
+
+	mlx_loop_hook( e.mlx, &main_loop, &e);
+
 	mlx_loop(e.mlx);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

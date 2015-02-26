@@ -13,6 +13,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+#define SECOND 1000000.0
 #define MOVE_STEP 1.01
 #define MANDELBROT_ITERATION 35
 #define WIN_WIDTH 800
@@ -56,6 +57,8 @@ typedef	struct		s_env
 	t_mandelbrot	mb;
 	int				mousex;
 	int				mousey;
+	double			start_frame;
+	double			end_frame;
 }					t_env;
 
 typedef struct		s_color

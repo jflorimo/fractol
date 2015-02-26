@@ -23,7 +23,7 @@ int mouse_hook(int button, int x, int y, t_env *e)
 		printf("x:%d, y:%d, button:%d\n",e->mousex , e->mousey, button);
 		if(button == 5)
 			zoom_in(e);
-		display(e);
+
 	}
 	return (0);
 }
