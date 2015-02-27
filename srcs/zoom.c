@@ -55,12 +55,10 @@ void zoom_in(t_env *e)
 	// e->mb.minX = e->mb.minX *0.95;
 	// e->mb.maxY = e->mb.maxY *0.95;
 	// e->mb.minY = e->mb.minY *0.95;
-
-	// e->mb.maxX = (e->mb.maxX - e->mousex)/e->zoom;
-	// e->mb.minX = (e->mb.minX + e->mousex)/e->zoom;
-
-	// e->mb.maxY = (e->mb.maxY - e->mousey)/e->zoom;
-	// e->mb.minY = (e->mb.minY + e->mousey)/e->zoom;
+	e->mb.minX += (e->mousex/4/e->zoom); 
+	e->mb.maxX += (e->mousex/4/e->zoom); 
+	e->mb.minY += (e->mousey/4/e->zoom); 
+	e->mb.maxY += (e->mousey/4/e->zoom); 
 	e->zoom *= 1.005;
 	
 	// printf("INmaxX: %f, minX: %f, maxY: %f, minY: %f\n", e->mb.maxX, e->mb.minX, e->mb.maxY, e->mb.minY);

@@ -12,6 +12,7 @@
 
 #include "fractol.h"
 #include "libft.h"
+#include <math.h>
 
 t_mandelbrot		initmandelbrot(void)
 {
@@ -26,9 +27,8 @@ t_mandelbrot		initmandelbrot(void)
 
 void				drawmandelbrot(t_env *e, int x, int y)
 {
-	int				a;
+	float				a;
 	t_color			color;
-
 	e->mb.rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * (x/e->zoom);
 	e->mb.ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * (y/e->zoom);
 	e->mb.rz = 0;
@@ -52,9 +52,9 @@ void				drawmandelbrot(t_env *e, int x, int y)
 	}
 	else
 	{
-		color.r = (255 * a) / MANDELBROT_ITERATION;
-		color.g = 0;
-		color.b = 0;		
+		color.r = sin(a/3)*255;
+		color.g = sin(a/4)*255;
+		color.b = sin(a/7)*255;		
 	}
 	put_pixel_to_image(e, x, y, color);
 }
