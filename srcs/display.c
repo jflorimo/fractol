@@ -76,11 +76,11 @@ void		draw(int choice)
 	e.rgb.r = 0;
 	e.rgb.g = 12;
 	e.rgb.b = 6;
+	e.mouse_available = 1;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	mlx_do_key_autorepeaton(e.mlx);
-	// e.mb = initmandelbrot();
-	e.mb = initjulia();
+	e.mb = init_fractol(choice);
 	e.image.image = mlx_new_image(e.mlx, WIN_WIDTH, WIN_HEIGHT);
 	e.image.data = mlx_get_data_addr(e.image.image, &(e.image.bpp),
 		&(e.image.size_line), &(e.image.endian));

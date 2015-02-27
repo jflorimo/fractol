@@ -10,6 +10,8 @@ t_mandelbrot		initjulia(void)
 	mandelbrot.maxX = MANDELBROT_X;
 	mandelbrot.minY = -MANDELBROT_Y;
 	mandelbrot.maxY = MANDELBROT_Y;
+	mandelbrot.rc = 0.6;
+	mandelbrot.ic = 0.76;
 	return (mandelbrot);
 }
 
@@ -19,8 +21,11 @@ void				drawjulia(t_env *e, int x, int y)
 	t_color			color;
 	e->mb.rz = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * (x/e->zoom);
 	e->mb.iz = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * (y/e->zoom);
-	e->mb.rc = e->mousex;
-	e->mb.ic = e->mousey;
+	if(e->mouse_available)
+	{
+		e->mb.rc = e->mousex;
+		e->mb.ic = e->mousey;
+	}
 	a = 0;
 	while (a < MANDELBROT_ITERATION)
 	{

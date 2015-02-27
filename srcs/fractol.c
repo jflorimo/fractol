@@ -13,11 +13,21 @@
 #include "fractol.h"
 #include "libft.h"
 
-// void init_fractol(int choice)
-// {
+t_mandelbrot init_fractol(int choice)
+{
+	if (choice == 1)
+		return initmandelbrot();
+	else
+		return initjulia();
+}
 
-// }
-
+void draw_chosen_fractol(t_env *e, int x, int y)
+{
+	if (e->choice == 1)
+		drawmandelbrot(e, x, y);
+	if (e->choice == 2)
+		drawjulia(e, x, y);
+}
 
 void drawfractol(t_env *e)
 {
@@ -30,8 +40,7 @@ void drawfractol(t_env *e)
 		y = 0;
 		while (y < WIN_HEIGHT)
 		{
-			// drawmandelbrot(e, x, y);
-			drawjulia(e, x, y);
+			draw_chosen_fractol(e, x, y);
 			y++;
 		}
 		x++;

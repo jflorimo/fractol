@@ -74,6 +74,7 @@ typedef	struct		s_env
 	int				state;
 	int 			choice;
 	float			zoom;
+	int				mouse_available;
 }					t_env;
 
 typedef struct		s_color
@@ -101,7 +102,7 @@ void change_color(int keycode, t_env *e);
 /***********************
    Mandelbrot Functions
 ************************/
-
+t_mandelbrot init_fractol(int choice);
 void		 drawjulia(t_env *e, int x, int y);
 t_mandelbrot initjulia(void);
 t_mandelbrot initmandelbrot( void );

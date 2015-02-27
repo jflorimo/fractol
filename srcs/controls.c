@@ -14,6 +14,17 @@
 #include "libft.h"
 #include <stdio.h>
 
+void activate_mouse(int keycode, t_env *e)
+{
+	if (keycode == 'm')
+	{
+		if (e->mouse_available)
+			e->mouse_available = 0;
+		else
+			e->mouse_available = 1;
+	}
+}
+
 int			key_hook(int keycode, t_env *e)
 {
 	if (e)
@@ -33,6 +44,7 @@ int			key_hook(int keycode, t_env *e)
 		if (keycode == 65453)
 			zoom_out(e);
 		change_color(keycode, e);
+		activate_mouse(keycode, e);
 		e->state = 1;
 	}
 	return (0);
@@ -60,8 +72,8 @@ int mouse_hook_button(int button, int x, int y, t_env *e)
 {
 	if(e)
 	{
-		e->mousex = (x - (WIN_WIDTH / 2)) / (WIN_WIDTH / 2);
-		e->mousey = (y - (WIN_HEIGHT / 2)) / (WIN_HEIGHT / 2);
+		(void)x;
+		(void)y;
 		if(button == 5)
 			zoom_in(e);
 		if(button == 4)
