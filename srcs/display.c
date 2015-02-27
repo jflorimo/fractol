@@ -19,8 +19,7 @@
 
 void		display(t_env *e)
 {
-	if(e->choice == 1)
-		drawfractol(e);
+	drawfractol(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->image.image, 0, 0);
 }
 
@@ -80,7 +79,8 @@ void		draw(int choice)
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	mlx_do_key_autorepeaton(e.mlx);
-	e.mb = initmandelbrot();
+	// e.mb = initmandelbrot();
+	e.mb = initjulia();
 	e.image.image = mlx_new_image(e.mlx, WIN_WIDTH, WIN_HEIGHT);
 	e.image.data = mlx_get_data_addr(e.image.image, &(e.image.bpp),
 		&(e.image.size_line), &(e.image.endian));

@@ -95,11 +95,15 @@ int		expose_hook(t_env *);
 void	display(t_env *);
 void 	put_pixel_to_image(t_env *e, int x, int y, t_color color);
 void 	drawfractol(t_env *e);
+
+
 void change_color(int keycode, t_env *e);
 /***********************
    Mandelbrot Functions
 ************************/
 
+void		 drawjulia(t_env *e, int x, int y);
+t_mandelbrot initjulia(void);
 t_mandelbrot initmandelbrot( void );
 void drawmandelbrot(t_env *, int x, int y);
 
