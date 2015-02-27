@@ -25,6 +25,13 @@ void activate_mouse(int keycode, t_env *e)
 	}
 }
 
+void custom_controls(int keycode, t_env *e)
+{
+	printf("keycode:%d\n",keycode);
+	(void)keycode;
+	(void)e;
+}
+
 int			key_hook(int keycode, t_env *e)
 {
 	if (e)
@@ -45,6 +52,8 @@ int			key_hook(int keycode, t_env *e)
 			zoom_out(e);
 		change_color(keycode, e);
 		activate_mouse(keycode, e);
+		if (e->custom)
+			custom_controls(keycode, e);
 		e->state = 1;
 	}
 	return (0);
@@ -58,12 +67,12 @@ int mouse_hook_position(int x, int y, t_env *e)
 		e->mousey = ((float)y - (WIN_HEIGHT / 2)) / (WIN_HEIGHT / 2);
 		e->state = 1;
 
-		float minX = e->mb.minX;
-		float maxX = e->mb.maxX;
-		float minY = e->mb.minY;
-		float maxY = e->mb.maxY;
-		printf("maxX:%f,minX:%f,maxY:%f,minY:%f,x:%f,y:%f,zoom:%f\n",
-			maxX ,minX, maxY, minY,e->mousex,e->mousey,e->zoom);
+		// float minX = e->mb.minX;
+		// float maxX = e->mb.maxX;
+		// float minY = e->mb.minY;
+		// float maxY = e->mb.maxY;
+		// printf("maxX:%f,minX:%f,maxY:%f,minY:%f,x:%f,y:%f,zoom:%f\n",
+		// 	maxX ,minX, maxY, minY,e->mousex,e->mousey,e->zoom);
 	}
 	return (0);
 }

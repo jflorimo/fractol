@@ -75,6 +75,7 @@ typedef	struct		s_env
 	int 			choice;
 	float			zoom;
 	int				mouse_available;
+	int				custom;
 }					t_env;
 
 typedef struct		s_color

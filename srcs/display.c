@@ -77,6 +77,10 @@ void		draw(int choice)
 	e.rgb.g = 12;
 	e.rgb.b = 6;
 	e.mouse_available = 1;
+	if (choice == 5)
+		e.custom = 1;
+	else
+		e.custom = 0;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	mlx_do_key_autorepeaton(e.mlx);
