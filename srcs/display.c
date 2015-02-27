@@ -19,37 +19,14 @@
 
 void		display(t_env *e)
 {
-	drawfractol(e);
+	if(e->choice == 1)
+		drawfractol(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->image.image, 0, 0);
 }
 
 int			expose_hook(t_env *e)
 {
 	display(e);
-	return (0);
-}
-
-int			key_hook(int keycode, t_env *e)
-{
-	if (e)
-	{
-		if (keycode == 65307)
-			exit(0);
-		if (keycode == 65362)
-			move_down(e);
-		if (keycode == 65364)
-			move_up(e);
-		if (keycode == 65361)
-			move_right(e);
-		if (keycode == 65363)
-			move_left(e);
-		if (keycode == 65451)
-			zoom_in(e);
-		if (keycode == 65453)
-			zoom_out(e);			
-		// printf("key: %d\n", keycode);
-		e->state = 1;
-	}
 	return (0);
 }
 
@@ -75,6 +52,8 @@ static double	get_time(void)
 
 int main_loop(t_env *e)
 {
+	double diff;
+
 	e->start_frame = get_time();
 	if(e->state)
 	{
@@ -82,22 +61,22 @@ int main_loop(t_env *e)
 		e->state = 0;
 	}	
 	e->end_frame = get_time();
-
-	double diff = e->end_frame - e->start_frame;
-
+	diff = e->end_frame - e->start_frame;
 	usleep((SECOND/30.0) - (diff));
-
-	// printf("tadam %lf\n", 1.0/(get_time() - e->start_frame));
 	return (0);
 }
 
-void		draw(void)
+void		draw(int choice)
 {
 	t_env	e;
 
+	e.choice = choice;
 	e.mousex = 0;
 	e.mousey = 0;
 	e.zoom = 1;
+	e.rgb.r = 0;
+	e.rgb.g = 12;
+	e.rgb.b = 6;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "mandelbrot");
 	mlx_do_key_autorepeaton(e.mlx);
@@ -108,11 +87,8 @@ void		draw(void)
 	mlx_hook(e.win, KeyPress, KeyPressMask, &key_hook, &e);
 	mlx_hook(e.win, MotionNotify, PointerMotionMask, &mouse_hook_position, &e);
 	mlx_hook(e.win, ButtonPress, ButtonPressMask, &mouse_hook_button, &e);
-	// mlx_mouse_hook(e.win, mouse_hook, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
-
 	mlx_loop_hook( e.mlx, &main_loop, &e);
-
 	mlx_loop(e.mlx);
 }
 

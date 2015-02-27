@@ -21,7 +21,7 @@ void	choice_message(void)
 
 int		main()//int ac, char **av)
 {
-	draw();
+	draw(1);
 	// if (ac > 1)
 	// {
 	// 	if (!ft_strcmp(av[1], "mandelbrot"))

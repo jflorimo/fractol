@@ -53,17 +53,26 @@ typedef struct		s_image
 
 }					t_image;
 
+typedef struct		s_rgb
+{
+	int			r;
+	int			g;
+	int			b;			
+}					t_rgb;
+
 typedef	struct		s_env
 {
 	void			*mlx;
 	void			*win;
 	t_image			image;
 	t_mandelbrot	mb;
+	t_rgb			rgb;
 	float			mousex;
 	float			mousey;
 	double			start_frame;
 	double			end_frame;
 	int				state;
+	int 			choice;
 	float			zoom;
 }					t_env;
 
@@ -74,16 +83,19 @@ typedef struct		s_color
 	char			b;			
 }					t_color;
 
+
+
 /***********************
 	Display Functions
 ************************/
 
-void	draw(void);
+void	draw(int);
 int		key_hook(int, t_env *);
 int		expose_hook(t_env *);
 void	display(t_env *);
 void 	put_pixel_to_image(t_env *e, int x, int y, t_color color);
 void 	drawfractol(t_env *e);
+void change_color(int keycode, t_env *e);
 /***********************
    Mandelbrot Functions
 ************************/
@@ -92,6 +104,7 @@ t_mandelbrot initmandelbrot( void );
 void drawmandelbrot(t_env *, int x, int y);
 
 /* Move **/
+int		key_hook(int keycode, t_env *e);
 int mouse_hook_position(int x, int y, t_env *e);
 int mouse_hook_button(int button, int x, int y, t_env *e);
 void move_up(t_env *e);

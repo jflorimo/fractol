@@ -27,7 +27,7 @@ t_mandelbrot		initmandelbrot(void)
 
 void				drawmandelbrot(t_env *e, int x, int y)
 {
-	float				a;
+	float			a;
 	t_color			color;
 	e->mb.rc = e->mb.minX + (e->mb.maxX - e->mb.minX) / WIN_WIDTH * (x/e->zoom);
 	e->mb.ic = e->mb.minY + (e->mb.maxY - e->mb.minY) / WIN_HEIGHT * (y/e->zoom);
@@ -52,9 +52,9 @@ void				drawmandelbrot(t_env *e, int x, int y)
 	}
 	else
 	{
-		color.r = sin(a/3)*255;
-		color.g = sin(a/4)*255;
-		color.b = sin(a/7)*255;		
+		color.r = sin(a/e->rgb.r)*255;
+		color.g = sin(a/e->rgb.g)*255;
+		color.b = sin(a/e->rgb.b)*255;		
 	}
 	put_pixel_to_image(e, x, y, color);
 }

@@ -14,6 +14,30 @@
 #include "libft.h"
 #include <stdio.h>
 
+int			key_hook(int keycode, t_env *e)
+{
+	if (e)
+	{
+		if (keycode == 65307)
+			exit(0);
+		if (keycode == 65362)
+			move_down(e);
+		if (keycode == 65364)
+			move_up(e);
+		if (keycode == 65361)
+			move_right(e);
+		if (keycode == 65363)
+			move_left(e);
+		if (keycode == 65451)
+			zoom_in(e);
+		if (keycode == 65453)
+			zoom_out(e);
+		change_color(keycode, e);
+		e->state = 1;
+	}
+	return (0);
+}
+
 int mouse_hook_position(int x, int y, t_env *e)
 {
 	if(e)
