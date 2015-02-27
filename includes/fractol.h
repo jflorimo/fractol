@@ -102,11 +102,14 @@ void change_color(int keycode, t_env *e);
 /***********************
    Mandelbrot Functions
 ************************/
-t_mandelbrot init_fractol(int choice);
-void		 drawjulia(t_env *e, int x, int y);
-t_mandelbrot initjulia(void);
-t_mandelbrot initmandelbrot( void );
-void drawmandelbrot(t_env *, int x, int y);
+t_mandelbrot	init_fractol(int choice);
+void			drawjulia(t_env *e, int x, int y);
+t_mandelbrot	initjulia(void);
+void			drawmandelbrot(t_env *, int x, int y);
+t_mandelbrot	initmandelbrot( void );
+void			drawcustom(t_env *e, int x, int y);
+t_mandelbrot	initcustom(void);
+
 
 /* Move **/
 int		key_hook(int keycode, t_env *e);
