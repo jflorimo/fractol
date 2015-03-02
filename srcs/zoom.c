@@ -12,14 +12,13 @@
 
 #include "fractol.h"
 #include "libft.h"
-#include <stdio.h>
 
 void rescale(t_env *e)
 {
-	e->mb.maxX += e->mousex/4/e->zoom;
-	e->mb.minX += e->mousex/4/e->zoom;
-	e->mb.maxY += e->mousey/4/e->zoom;
-	e->mb.minY += e->mousey/4/e->zoom;
+	e->mb.maxx += e->mousex / 4 / e->zoom;
+	e->mb.minx += e->mousex / 4 / e->zoom;
+	e->mb.maxy += e->mousey / 4 / e->zoom;
+	e->mb.miny += e->mousey / 4 / e->zoom;
 }
 
 void zoom_in(t_env *e)

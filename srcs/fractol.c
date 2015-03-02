@@ -12,26 +12,46 @@
 
 #include "fractol.h"
 #include "libft.h"
+#include <math.h>
 
-t_mandelbrot init_fractol(int choice)
+void			drawcolor(float a, t_env *e, int x, int y)
 {
-	if (choice == 1)
-		return initmandelbrot();
-	else if (choice == 2)
-		return initjulia();
-	else if (choice == 3)
-		return initburning();
-	else if (choice == 4)
-		return initship();
-	else if (choice == 8)
-		return initphoenix();
-	else if (choice == 9)
-		return initbrainz();
+	t_color		color;
+
+	if (a >= MANDELBROT_ITERATION)
+	{
+		color.r = 0;
+		color.g = 0;
+		color.b = 0;
+	}
 	else
-		return initcustom();
+	{
+		color.r = sin(a / e->rgb.r) * 255;
+		color.g = sin(a / e->rgb.g) * 255;
+		color.b = sin(a / e->rgb.b) * 255;
+	}
+	put_pixel_to_image(e, x, y, color);
 }
 
-void draw_chosen_fractol(t_env *e, int x, int y)
+t_mandelbrot	init_fractol(int choice)
+{
+	if (choice == 1)
+		return (initmandelbrot());
+	else if (choice == 2)
+		return (initjulia());
+	else if (choice == 3)
+		return (initburning());
+	else if (choice == 4)
+		return (initship());
+	else if (choice == 8)
+		return (initphoenix());
+	else if (choice == 9)
+		return (initbrainz());
+	else
+		return (initcustom());
+}
+
+void			draw_chosen_fractol(t_env *e, int x, int y)
 {
 	if (e->choice == 1)
 		drawmandelbrot(e, x, y);
@@ -49,7 +69,7 @@ void draw_chosen_fractol(t_env *e, int x, int y)
 		drawcustom(e, x, y);
 }
 
-void drawfractol(t_env *e)
+void			drawfractol(t_env *e)
 {
 	int x;
 	int y;

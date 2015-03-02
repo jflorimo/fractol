@@ -13,6 +13,30 @@
 #include "fractol.h"
 #include "libft.h"
 
+void	display(t_env *e)
+{
+	drawfractol(e);
+	mlx_put_image_to_window(e->mlx, e->win, e->image.image, 0, 0);
+}
+
+int		expose_hook(t_env *e)
+{
+	display(e);
+	return (0);
+}
+
+void	put_pixel_to_image(t_env *e, int x, int y, t_color color)
+{
+	char	*pixel;
+	int		index;
+
+	index = y * (e->image.size_line) + (x * (e->image.bpp / 8));
+	pixel = &(e->image.data[index]);
+	pixel[0] = color.b;
+	pixel[1] = color.g;
+	pixel[2] = color.r;
+}
+
 void	choice_message(void)
 {
 	ft_putstr("you can choose between:\n");

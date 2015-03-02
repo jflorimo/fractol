@@ -12,9 +12,8 @@
 
 #include "fractol.h"
 #include "libft.h"
-#include <stdio.h>
 
-void activate_mouse(int keycode, t_env *e)
+void		activate_mouse(int keycode, t_env *e)
 {
 	if (keycode == 'm')
 	{
@@ -25,9 +24,8 @@ void activate_mouse(int keycode, t_env *e)
 	}
 }
 
-void custom_controls(int keycode, t_env *e)
+void		custom_controls(int keycode, t_env *e)
 {
-	printf("keycode:%d\n",keycode);
 	(void)keycode;
 	(void)e;
 }
@@ -59,32 +57,26 @@ int			key_hook(int keycode, t_env *e)
 	return (0);
 }
 
-int mouse_hook_position(int x, int y, t_env *e)
+int			mouse_hook_position(int x, int y, t_env *e)
 {
-	if(e)
+	if (e)
 	{
 		e->mousex = ((float)x - (WIN_WIDTH / 2)) / (WIN_WIDTH / 2);
 		e->mousey = ((float)y - (WIN_HEIGHT / 2)) / (WIN_HEIGHT / 2);
 		e->state = 1;
-
-		// float minX = e->mb.minX;
-		// float maxX = e->mb.maxX;
-		// float minY = e->mb.minY;
-		// float maxY = e->mb.maxY;
-		printf("MOUSE: x:%f,y:%f\n",e->mousex,e->mousey);
 	}
 	return (0);
 }
 
-int mouse_hook_button(int button, int x, int y, t_env *e)
+int			mouse_hook_button(int button, int x, int y, t_env *e)
 {
-	if(e)
+	if (e)
 	{
 		(void)x;
 		(void)y;
-		if(button == 5)
+		if (button == 5)
 			zoom_in(e);
-		if(button == 4)
+		if (button == 4)
 			zoom_out(e);
 		e->state = 1;
 	}

@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   initdata.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/02 14:49:32 by jflorimo          #+#    #+#             */
-/*   Updated: 2015/03/02 14:49:33 by jflorimo         ###   ########.fr       */
+/*   Created: 2015/03/02 15:28:16 by jflorimo          #+#    #+#             */
+/*   Updated: 2015/03/02 15:28:16 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 
-t_color	init_color(int r, int g, int b)
+t_env		initenv(int choice)
 {
-	t_color color;
+	t_env	e;
 
-	color.r = r;
-	color.g = g;
-	color.b = b;
-	return (color);
-}
-
-void	change_color(int keycode, t_env *e)
-{
-	if (keycode == 113)
-		e->rgb.r++;
-	if (keycode == 97)
-		e->rgb.r--;
-	if (keycode == 119)
-		e->rgb.g++;
-	if (keycode == 115)
-		e->rgb.g--;
-	if (keycode == 101)
-		e->rgb.b++;
-	if (keycode == 100)
-		e->rgb.b--;
+	e.choice = choice;
+	e.mousex = 0;
+	e.mousey = 0;
+	e.zoom = 1;
+	e.rgb.r = 0;
+	e.rgb.g = 12;
+	e.rgb.b = 6;
+	e.mouse_available = 1;
+	if (choice == 5)
+		e.custom = 1;
+	else
+		e.custom = 0;
+	return (e);
 }
