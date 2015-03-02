@@ -17,8 +17,14 @@ t_mandelbrot init_fractol(int choice)
 {
 	if (choice == 1)
 		return initmandelbrot();
-	if (choice == 2)
+	else if (choice == 2)
 		return initjulia();
+	else if (choice == 3)
+		return initburning();
+	else if (choice == 4)
+		return initship();
+	else if (choice == 8)
+		return initphoenix();
 	else
 		return initcustom();
 }
@@ -27,8 +33,14 @@ void draw_chosen_fractol(t_env *e, int x, int y)
 {
 	if (e->choice == 1)
 		drawmandelbrot(e, x, y);
-	if (e->choice == 2)
+	else if (e->choice == 2)
 		drawjulia(e, x, y);
+	else if (e->choice == 3)
+		drawburning(e, x, y);
+	else if (e->choice == 4)
+		drawship(e, x, y);
+	else if (e->choice == 8)
+		drawphoenix(e, x, y);
 	else
 		drawcustom(e, x, y);
 }

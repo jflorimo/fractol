@@ -110,7 +110,12 @@ void			drawmandelbrot(t_env *, int x, int y);
 t_mandelbrot	initmandelbrot( void );
 void			drawcustom(t_env *e, int x, int y);
 t_mandelbrot	initcustom(void);
-
+void			drawburning(t_env *e, int x, int y);
+t_mandelbrot	initburning(void);
+void			drawship(t_env *e, int x, int y);
+t_mandelbrot	initship(void);
+void			drawphoenix(t_env *e, int x, int y);
+t_mandelbrot	initphoenix(void);
 
 /* Move **/
 int		key_hook(int keycode, t_env *e);

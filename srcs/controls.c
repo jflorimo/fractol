@@ -71,8 +71,7 @@ int mouse_hook_position(int x, int y, t_env *e)
 		// float maxX = e->mb.maxX;
 		// float minY = e->mb.minY;
 		// float maxY = e->mb.maxY;
-		// printf("maxX:%f,minX:%f,maxY:%f,minY:%f,x:%f,y:%f,zoom:%f\n",
-		// 	maxX ,minX, maxY, minY,e->mousex,e->mousey,e->zoom);
+		printf("MOUSE: x:%f,y:%f\n",e->mousex,e->mousey);
 	}
 	return (0);
 }
