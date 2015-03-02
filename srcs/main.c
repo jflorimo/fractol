@@ -21,6 +21,7 @@ void	choice_message(void)
 	ft_putstr("3. burning\n");
 	ft_putstr("4. ship\n");
 	ft_putstr("8. phoenix\n");
+	ft_putstr("9. brainz\n");
 	ft_putstr("5. custom\n");
 }
 
@@ -38,6 +39,8 @@ int		main(int ac, char **av)
 			draw(4);
 		if (!ft_strcmp(av[1], "phoenix"))
 			draw(8);
+		if (!ft_strcmp(av[1], "brainz"))
+			draw(9);
 		if (!ft_strcmp(av[1], "custom"))
 			draw(5);
 		else

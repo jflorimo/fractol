@@ -116,6 +116,8 @@ void			drawship(t_env *e, int x, int y);
 t_mandelbrot	initship(void);
 void			drawphoenix(t_env *e, int x, int y);
 t_mandelbrot	initphoenix(void);
+void			drawbrainz(t_env *e, int x, int y);
+t_mandelbrot	initbrainz(void);
 
 /* Move **/
 int		key_hook(int keycode, t_env *e);

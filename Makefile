@@ -15,7 +15,7 @@ NAME =	fractol
 SRCDIR = srcs/
 
 CFILES =	main.c display.c mandelbrot.c move.c zoom.c fractol.c controls.c\
-			color.c julia.c custom.c burningship.c ship.c phoenix.c\
+			color.c julia.c custom.c burningship.c ship.c phoenix.c brainz.c\
 
 MLX = -L/usr/X11/lib -lmlx -lXext -lX11
 

@@ -2,7 +2,7 @@
 #include "libft.h"
 #include <math.h>
 
-t_mandelbrot		initphoenix(void)
+t_mandelbrot		initbrainz(void)
 {
 	t_mandelbrot	mandelbrot;
 
@@ -17,7 +17,7 @@ t_mandelbrot		initphoenix(void)
 	return (mandelbrot);
 }
 
-void				drawphoenix(t_env *e, int x, int y)
+void				drawbrainz(t_env *e, int x, int y)
 {
 	float			a;
 	t_color			color;
@@ -34,7 +34,7 @@ void				drawphoenix(t_env *e, int x, int y)
 		e->mb.r = e->mb.rz;
 		e->mb.i = e->mb.iz;
 		e->mb.rz = e->mb.r * e->mb.r - e->mb.i * e->mb.i + e->mb.rc;
-		e->mb.iz = 2 * fabs(e->mb.r * e->mb.i) + e->mb.ic;
+		e->mb.iz = 3 * sin(e->mb.r * e->mb.i) + e->mb.ic;
 		if ((e->mb.rz * e->mb.rz + e->mb.iz * e->mb.iz) >= 4)
 			break ;
 		a++;

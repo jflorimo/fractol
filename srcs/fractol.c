@@ -25,6 +25,8 @@ t_mandelbrot init_fractol(int choice)
 		return initship();
 	else if (choice == 8)
 		return initphoenix();
+	else if (choice == 9)
+		return initbrainz();
 	else
 		return initcustom();
 }
@@ -41,6 +43,8 @@ void draw_chosen_fractol(t_env *e, int x, int y)
 		drawship(e, x, y);
 	else if (e->choice == 8)
 		drawphoenix(e, x, y);
+	else if (e->choice == 9)
+		drawbrainz(e, x, y);
 	else
 		drawcustom(e, x, y);
 }
